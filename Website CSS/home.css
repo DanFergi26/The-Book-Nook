@@ -1,0 +1,110 @@
+html {
+	background-color: beige;
+}
+h1 {
+	margin: 100;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	background-color: beige;
+	text-align: center;
+	}
+
+h2 {
+	text-align: center;
+	
+}
+
+h3 {
+  list-style-type: none;
+  margin: 50;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  border-style: solid;
+  border-color: brown;
+}
+
+#right {
+	padding-left: 950px;
+	padding-right: 10px;
+	}
+	
+#left {
+	padding-left: 10px;
+	padding-right: 1150px;
+}
+
+li {
+  display: inline;
+  float: left;
+  padding-left: 50px;
+
+}
+
+a {
+	display: block;
+	padding: 8px;
+	font: white;
+}
+
+#Left-Books {
+	display: inline;
+	width: 480px;
+	height: 270px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+#Right-Books {
+	display: inline;
+	width: 480px;
+	height: 270px;
+	margin-left: 15px;
+	margin-right: 0px;
+}
+
+#Logo {
+	width: 60px;
+	height: 60px;
+	display:inline;
+	padding-right: 20px;
+	vertical-align: middle;
+}
+
+#Search {
+	margin-top: 10px;
+	width: 650px;
+	height: 20px;
+}
+
+#Nav {
+	background-color: brown;
+	}
+	
+#body {
+	background-color: brown;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  border: 2px solid brown;
+  padding: 10px;
+  box-sizing: border-box;
+ }
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  height: 200px;
+  width: 100%;
+  
+}
+
+#footer {
+	background-color: brown;
+	width: 100%;
+	height: 150px;
+}
+
