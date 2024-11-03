@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup Page</title>
+    <!-- Link to the CSS file using Flask's url_for function -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+    <!-- Navigation Links (left) -->
+    <h4 id="left">
+        <li><a href="" style="text-decoration:none">Help</a></li>
+        <li><a href="" style="text-decoration:none">|</a></li>
+        <li><a href="" style="text-decoration:none">Events</a></li>
+    </h4>
+
+    <!-- Navigation Links (right) -->
+    <h4 id="right">
+        <li><a href="" style="text-decoration:none">Account</a></li>
+        <li><a href="" style="text-decoration:none">|</a></li>
+        <li><a href="" style="text-decoration:none">Add Book</a></li>
+        <li><a href="" style="text-decoration:none">|</a></li>
+        <li><a href="" style="text-decoration:none">Wishlist</a></li>
+    </h4><br>
+
+    <!-- Page Logo and Title -->
+    <h1> 
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo"> 
+        The Book Nook 
+    </h1>
+
+    <!-- Page Navigation Bar -->
+    <div>
+        <h3>
+            <li><a href="" style="text-decoration:none">|</a></li>
+            <li><a href="/" style="text-decoration:none">Home</a></li>
+            <li><a href="" style="text-decoration:none">|</a></li>
+            <li><a href="account.html" style="text-decoration:none">Account</a></li>
+            <li><a href="" style="text-decoration:none">|</a></li>
+            <li><a href="books.html" style="text-decoration:none">Books</a></li>
+            <li><a href="" style="text-decoration:none">|</a></li>
+            <li><input type="text" id="Search" placeholder="Search Books & Accounts"></li>
+            <li><a href="" style="text-decoration:none">|</a></li>
+        </h3>
+    </div>
+</head>
+
+<body>
+    <h2>Create Account</h2>
+    <form name="signup_form" action="{{ url_for('signup') }}" method="post">
+        <label class="form1text" for="uname">Create username:</label><br>
+        <input class="form1" type="text" id="uname" name="uname" required><br>
+
+        <label class="form1text" for="pass">Create password:</label><br>
+        <input class="form1" type="text" id="pass" name="pass" required><br>
+
+        <label class="form1text" for="repass">Re-enter password:</label><br>
+        <input class="form1" type="text" id="repass" name="repass" required><br>
+
+        <label class="form1text" for="email">Enter e-mail:</label><br>
+        <input class="form1" type="text" id="email" name="email" required><br>
+
+        <button class="form1" type="submit" class="btn" name="button" value="login">
+            Create
+        </button>
+    </form>
+</body>
+
+<footer>
+    <div id="footer">
+    </div>
+</footer>
+</html>

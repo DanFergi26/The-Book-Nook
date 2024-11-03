@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup Page</title>
+    <!-- Link to the CSS file using Flask's url_for function -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+		
+		<! -- Hyperlink to extra pages that'll be displayed top left page -->
+		<h4 id="left">
+		<li><a href="" style="text-decoration:none">Help</a></li>
+		<li><a href="" style="text-decoration:none">|</a></li>
+		<li><a href="" style="text-decoration:none">Events</a></li>
+		</h4>
+		
+		<! -- Hyperlink to extra pages that'll be displayed top left page -->
+		<h4 id="right">
+		<li><a href="/login" style="text-decoration:none">Account</a></li>
+		<li><a href="" style="text-decoration:none">|</a></li>
+		<li><a href="" style="text-decoration:none">Add Book</a></li>
+		<li><a href="" style="text-decoration:none">|</a></li>
+		<li><a href="" style="text-decoration:none">Wishlist</a></li>
+		</h4><br>
+	
+		<! -- Code for page logo and title -->
+		<h1> <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo"> The Book Nook </h1>
+		
+		<! -- Code for the pages navigation bar -->
+		<div>
+		<h3>
+		<li><a href="" style="text-decoration:none">|</a></li>
+		<li><a href="/" style="text-decoration:none">Home</a></li>
+		<li><a href="" style="text-decoration:none">|</a></li>
+		<li><a href="/login" style="text-decoration:none">Account</a></li>
+		<li><a href="" style="text-decoration:none">|</a></li>
+		<li><a href="books.html" style="text-decoration:none">Books</a></li>
+		<li><a href="" style="text-decoration:none">|</a></li>
+		<li> <input type="text" id="Search" placeholder="Search Books & Accounts" ></li>
+		<li><a href="" style="text-decoration:none">|</a></li>
+		</h3>
+		</div>
+	</head>
+	
+	<! -- source and names for front page images -->
+	<body>
+	<div id="body">
+	<img src="{{ url_for('static', filename='images/leftBooks.png') }}" alt="Left Books" id="Left-Books">
+	<img src="{{ url_for('static', filename='images/fireplace.gif') }}" alt="Fireplace">
+	<img src="{{ url_for('static', filename='images/rightBooks.png') }}" alt="Right Books" id="Right-Books">
+	</div>
+	
+	<div class="row">
+		<div class="column">
+		<h2> Recent Reviews: <br></h2>
+		
+		</div>
+		
+		<div class="column">
+		<h2> Recent Books: </h2>
+		
+		</div>
+	</div>
+	</body>
+	
+	<footer>
+	<div id="footer">
+	</div>
+	</footer>
+</html>
