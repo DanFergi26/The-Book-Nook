@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup</title>
+    <title>Add Book</title>
     <!-- Link to the CSS file using Flask's url_for function -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 
@@ -44,34 +44,31 @@
     </div>
 </head>
 <body>
-    <h2>Create Account</h2>
-    <form name="signup_form" action="{{ url_for('signup_form') }}" method="post" enctype="multipart/form-data">
-        <label class="form1text" for="propic">Profile Picture:</label><br>
-        <input class="form1" type="file" name="propic" required><br>
+    <h2>Add Book</h2>
+    <form name="add_book" action="{{ url_for('add_book') }}" method="post" enctype="multipart/form-data">
+        <label class="form1text" for="bookcover">Book Cover:</label><br>
+        <input class="form1" type="file" name="bookcover" required><br>
 
-        <label class="form1text" for="uname">Create username:</label><br>
-        <input class="form1" type="text" id="uname" name="uname" required><br>
+        <label class="form1text" for="title">Title:</label><br>
+        <input class="form1" type="text" id="title" name="title" required><br>
 
-        <label class="form1text" for="surname">Surname:</label><br>
-        <input class="form1" type="text" id="surname" name="surname" required><br>
+        <label class="form1text" for="author">Author:</label><br>
+        <input class="form1" type="text" id="author" name="author" required><br>
 
-        <label class="form1text" for="forename">Forename:</label><br>
-        <input class="form1" type="text" id="forename" name="forename" required><br>
+        <label class="form1text" for="illustrator">Illustrator(if applicable):</label><br>
+        <input class="form1" type="text" id="illustrator" name="illustrator" ><br>
 
-        <label class="form1text" for="pass">Create password:</label><br>
-        <input class="form1" type="password" id="pass" name="pass" required><br>
+        <label class="form1text" for="genre">Genre:</label><br>
+        <input class="form1" type="text" id="genre" name="genre" required><br>
 
-        <label class="form1text" for="repass">Re-enter password:</label><br>
-        <input class="form1" type="password" id="repass" name="repass" required><br>
+        <label class="form1text" for="release">Release:</label><br>
+        <input class="form1" type="date" id="release" name="release" required><br>
 
-        <label class="form1text" for="email">Enter e-mail:</label><br>
-        <input class="form1" type="email" id="email" name="email" required><br>
-		
-		<label class="form1text" for="birth">Enter date of birth:</label><br>
-		<input class="form1" type="date" id="birth" name="birth" required><br>
+        <label class="form1text" for="descrip">Description:</label><br>
+        <input class="form1" type="text" id="descrip" name="descrip" required minlength="10" maxlength="1000000"><br>
 
         <button class="form1" type="submit" class="btn" name="button" value="signup">
-            Create
+            Add Book
         </button>
     </form>
 </body>

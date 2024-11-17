@@ -2,52 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Account Page</title>
-    <!-- Link to the CSS file using Flask's url_for function -->
+    <title>{{ user_info['username'] }}'s Account</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-		
-		<! -- Hyperlink to extra pages that'll be displayed top left page -->
-		<h4 id="left">
-		<li><a href="" style="text-decoration:none">Help</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="" style="text-decoration:none">Events</a></li>
-		</h4>
-		
-		<! -- Hyperlink to extra pages that'll be displayed top left page -->
-		<h4 id="right">
-		<li><a href="/login" style="text-decoration:none">Account</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="" style="text-decoration:none">Add Book</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="" style="text-decoration:none">Wishlist</a></li>
-		</h4><br>
-	
-		<! -- Code for page logo and title -->
-		<h1> <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo"> The Book Nook </h1>
-		
-		<! -- Code for the pages navigation bar -->
-		<div>
-		<h3>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="/" style="text-decoration:none">Home</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="/login" style="text-decoration:none">Account</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="books.html" style="text-decoration:none">Books</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li> <input type="text" id="Search" placeholder="Search Books & Accounts" ></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		</h3>
-		</div>
-	</head>
-	
-	
-	<body>
-	
-	</body>
-	
-	<footer>
-	<div id="footer">
-	</div>
-	</footer>
+
+    <!-- Top Navigation Links -->
+    <h4 id="left">
+        <li><a href="" style="text-decoration:none">Help</a></li>
+        <li><a href="" style="text-decoration:none">|</a></li>
+        <li><a href="" style="text-decoration:none">Events</a></li>
+    </h4>
+
+    <h4 id="right">
+        {% if session.get('logged_in') %}
+		<li><a href="{{ url_for('account', username=session['username']) }}" style="text-decoration:none">Account</a></li>
+		{% else %}
+		<li><a href="{{ url_for('login') }}" style="text-decoration:none">Account</a></li>
+		{% endif %}
+        <li><a href="" style="text-decoration:none">|</a></li>
+        <li><a href="{{ url_for('add_book') }}" style="text-decoration:none">Add Book</a></li>
+        <li><a href="" style="text-decoration:none">|</a></li>
+        <li><a href="" style="text-decoration:none">Wishlist</a></li>
+    </h4><br>
+
+    <h1>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo">
+        The Book Nook
+    </h1>
+
+    <div>
+        <h3>
+            <li><a href="" style="text-decoration:none">|</a></li>
+            <li><a href="/" style="text-decoration:none">Home</a></li>
+            <li><a href="" style="text-decoration:none">|</a></li>
+            {% if session.get('logged_in') %}
+			<li><a href="{{ url_for('account', username=session['username']) }}" style="text-decoration:none">Account</a></li>
+			{% else %}
+			<li><a href="{{ url_for('login') }}" style="text-decoration:none">Account</a></li>
+			{% endif %}
+            <li><a href="" style="text-decoration:none">|</a></li>
+            <li><a href="books.html" style="text-decoration:none">Books</a></li>
+            <li><a href="" style="text-decoration:none">|</a></li>
+            <li><input type="text" id="Search" placeholder="Search Books & Accounts"></li>
+            <li><a href="" style="text-decoration:none">|</a></li>
+        </h3>
+    </div>
+</head>
+
+<body>
+    <h1>{{ user_info['username'] }}'s Profile</h1>
+	<p><strong>Forename:</strong> {{ user_info['forename'] }}</p>
+    <p><strong>Surname:</strong> {{ user_info['surname'] }}</p>
+    <p><strong>Email:</strong> {{ user_info['email'] }}</p>
+    <p><strong>Birthdate:</strong> {{ user_info['birth'] }}</p>
+    <p><strong>Profile Picture:</strong></p>
+	<li><a href="" style="text-decoration:none">Followers</a></li>
+    <li><a href="" style="text-decoration:none">|</a></li>
+    <li><a href="" style="text-decoration:none">Following</a></li>
+    <img src="{{ url_for('static', filename=user_info['profile_pic']) }}" alt="Profile Picture" style="width: 150px; height: 150px;">
+	<button class="form1" type="follow" class="btn" name="button" value="follow">
+            Follow
+        </button>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+
+<footer>
+    <div id="footer"></div>
+</footer>
 </html>

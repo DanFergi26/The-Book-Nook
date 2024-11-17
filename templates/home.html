@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup Page</title>
+    <title>Home</title>
     <!-- Link to the CSS file using Flask's url_for function -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 		
@@ -15,9 +15,9 @@
 		
 		<! -- Hyperlink to extra pages that'll be displayed top left page -->
 		<h4 id="right">
-		<li><a href="/login" style="text-decoration:none">Account</a></li>
+		<li><a href="{{ url_for('account', username=session['username']) if logged_in else url_for('login') }}" style="text-decoration:none">Account</a></li>
 		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="" style="text-decoration:none">Add Book</a></li>
+		<li><a href="{{ url_for('add_book') }}" style="text-decoration:none">Add Book</a></li>
 		<li><a href="" style="text-decoration:none">|</a></li>
 		<li><a href="" style="text-decoration:none">Wishlist</a></li>
 		</h4><br>
@@ -31,7 +31,7 @@
 		<li><a href="" style="text-decoration:none">|</a></li>
 		<li><a href="/" style="text-decoration:none">Home</a></li>
 		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="/login" style="text-decoration:none">Account</a></li>
+		<li><a href="{{ url_for('account', username=session['username']) if logged_in else url_for('login') }}" style="text-decoration:none">Account</a></li>
 		<li><a href="" style="text-decoration:none">|</a></li>
 		<li><a href="books.html" style="text-decoration:none">Books</a></li>
 		<li><a href="" style="text-decoration:none">|</a></li>
