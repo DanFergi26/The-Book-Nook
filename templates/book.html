@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ user_info['username'] }}'s Account</title>
+    <title>{{ title_info['title'] }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 
     <!-- Top Navigation Links -->
@@ -56,21 +56,13 @@
 </head>
 
 <body>
-    <h1>{{ user_info['username'] }}'s Profile</h1>
-	<p><strong>Forename:</strong> {{ user_info['forename'] }}</p>
-    <p><strong>Surname:</strong> {{ user_info['surname'] }}</p>
-    <p><strong>Email:</strong> {{ user_info['email'] }}</p>
-    <p><strong>Birthdate:</strong> {{ user_info['birth'] }}</p>
-    <p><strong>Profile Picture:</strong></p>
-	<li><a href="{{ url_for('followers', username=user_info['username']) }}" style="text-decoration:none">Followers</a></li>
-    <li><a href="" style="text-decoration:none">|</a></li>
-    <li><a href="{{ url_for('following', username=user_info['username']) }}" style="text-decoration:none">Following</a></li>
-    <img src="{{ url_for('static', filename=user_info['profile_pic']) }}" alt="Profile Picture" style="width: 150px; height: 150px;">
-	
-	<form method="POST" action="{{ url_for('follow', username=user_info['username']) }}">
-    <button type="submit">Follow</button>
-</form>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <h1>{{ title_info['title'] }}</h1>
+	<p><strong>Author:</strong> {{ title_info['author'] }}</p>
+    <p><strong>Illustrator:</strong> {{ title_info['illustrator'] }}</p>
+    <p><strong>Genre:</strong> {{ title_info['genre'] }}</p>
+    <p><strong>Release:</strong> {{ title_info['release'] }}</p>
+    <img src="{{ url_for('static', filename=title_info['book_cover']) }}" alt="Book Cover" style="width: 150px; height: 200px;"><br>
+	<li><a href="{{ url_for('add_review') }}" style="text-decoration:none">Add Review</a></li>
 </body>
 
 <footer>

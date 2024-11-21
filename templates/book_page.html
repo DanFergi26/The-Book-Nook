@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ user_info['username'] }}'s Account</title>
+    <title>Books</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 
     <!-- Top Navigation Links -->
@@ -56,21 +56,19 @@
 </head>
 
 <body>
-    <h1>{{ user_info['username'] }}'s Profile</h1>
-	<p><strong>Forename:</strong> {{ user_info['forename'] }}</p>
-    <p><strong>Surname:</strong> {{ user_info['surname'] }}</p>
-    <p><strong>Email:</strong> {{ user_info['email'] }}</p>
-    <p><strong>Birthdate:</strong> {{ user_info['birth'] }}</p>
-    <p><strong>Profile Picture:</strong></p>
-	<li><a href="{{ url_for('followers', username=user_info['username']) }}" style="text-decoration:none">Followers</a></li>
-    <li><a href="" style="text-decoration:none">|</a></li>
-    <li><a href="{{ url_for('following', username=user_info['username']) }}" style="text-decoration:none">Following</a></li>
-    <img src="{{ url_for('static', filename=user_info['profile_pic']) }}" alt="Profile Picture" style="width: 150px; height: 150px;">
-	
-	<form method="POST" action="{{ url_for('follow', username=user_info['username']) }}">
-    <button type="submit">Follow</button>
-</form>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <h1>Books</h1>
+
+    <!-- Display books -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for book in books %}
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center;">
+            <a href="{{ url_for('book', title=book['title']) }}"> <img src="{{ url_for('static', filename=book['book_cover']) }}" alt="{{ book['title'] }}" style="width: 150px; height: 200px;"> </a>
+            <h3>{{ book['title'] }}</h3>
+        </div>
+        {% endfor %}
+		
+    </div>
+
 </body>
 
 <footer>

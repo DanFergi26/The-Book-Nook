@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ user_info['username'] }}'s Account</title>
+    <title>Search</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 
     <!-- Top Navigation Links -->
@@ -54,25 +54,42 @@
     </h3>
 </div>
 </head>
-
 <body>
-    <h1>{{ user_info['username'] }}'s Profile</h1>
-	<p><strong>Forename:</strong> {{ user_info['forename'] }}</p>
-    <p><strong>Surname:</strong> {{ user_info['surname'] }}</p>
-    <p><strong>Email:</strong> {{ user_info['email'] }}</p>
-    <p><strong>Birthdate:</strong> {{ user_info['birth'] }}</p>
-    <p><strong>Profile Picture:</strong></p>
-	<li><a href="{{ url_for('followers', username=user_info['username']) }}" style="text-decoration:none">Followers</a></li>
-    <li><a href="" style="text-decoration:none">|</a></li>
-    <li><a href="{{ url_for('following', username=user_info['username']) }}" style="text-decoration:none">Following</a></li>
-    <img src="{{ url_for('static', filename=user_info['profile_pic']) }}" alt="Profile Picture" style="width: 150px; height: 150px;">
-	
-	<form method="POST" action="{{ url_for('follow', username=user_info['username']) }}">
-    <button type="submit">Follow</button>
-</form>
-    <a href="{{ url_for('logout') }}">Logout</a>
-</body>
+    <h1>Search Results for "{{ search_query }}"</h1>
 
+    <!-- Books Section -->
+    <h2>Books</h2>
+    {% if books %}
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for book in books %}
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center;">
+            <a href="{{ url_for('book', title=book['title']) }}"> <img src="{{ url_for('static', filename=book['book_cover']) }}" alt="{{ book['title'] }}" style="width: 150px; height: 200px;"> </a>
+            <h3>{{ book['title'] }}</h3>
+            <p><strong>Author:</strong> {{ book['author'] }}</p>
+            <p><strong>Genre:</strong> {{ book['genre'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No books found matching "{{ search_query }}"</p>
+    {% endif %}
+
+    <!-- Accounts Section -->
+    <h2>Accounts</h2>
+    {% if accounts %}
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for account in accounts %}
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center;">
+            <a href="{{ url_for('account', username=account['username']) }}"> <img src="{{ url_for('static', filename=account['profile_pic']) }}" alt="{{ account['username'] }}" style="width: 100px; height: 100px; border-radius: 50%;"> </a>
+            <h3>{{ account['username'] }}</h3>
+            <p><strong>Name:</strong> {{ account['forename'] }} {{ account['surname'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No accounts found matching "{{ search_query }}"</p>
+    {% endif %}
+</body>
 <footer>
     <div id="footer"></div>
 </footer>

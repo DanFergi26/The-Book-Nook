@@ -27,43 +27,70 @@
 		
 		<! -- Code for the pages navigation bar -->
 		<div>
-		<h3>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="/" style="text-decoration:none">Home</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="{{ url_for('account', username=session['username']) if logged_in else url_for('login') }}" style="text-decoration:none">Account</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li><a href="books.html" style="text-decoration:none">Books</a></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		<li> <input type="text" id="Search" placeholder="Search Books & Accounts" ></li>
-		<li><a href="" style="text-decoration:none">|</a></li>
-		</h3>
-		</div>
+    <h3>
+        <li><a href="" style="text-decoration:none">|</a></li>
+        <li><a href="/" style="text-decoration:none">Home</a></li>
+        <li><a href="" style="text-decoration:none">|</a></li>
+        {% if session.get('logged_in') %}
+        <li><a href="{{ url_for('account', username=session['username']) }}" style="text-decoration:none">Account</a></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}" style="text-decoration:none">Account</a></li>
+        {% endif %}
+        <li><a href="" style="text-decoration:none" >|</a></li>
+        <li><a href="{{ url_for('books') }}" style="text-decoration:none">Books</a></li>
+        <li><a href="" style="text-decoration:none" >|</a></li>
+        
+        <!-- Search Bar with Button -->
+        <form method="GET" action="{{ url_for('search') }}" id="nav">
+            <input type="text" id="Search" name="q" placeholder="Search Books & Accounts">
+            <button type="submit" id="SrchBtn">Search</button>
+        </form>
+
+        <li><a href="" style="text-decoration:none">|</a></li>
+    </h3>
+</div>
 	</head>
 	
-	<! -- source and names for front page images -->
 	<body>
-	<div id="body">
-	<img src="{{ url_for('static', filename='images/leftBooks.png') }}" alt="Left Books" id="Left-Books">
-	<img src="{{ url_for('static', filename='images/fireplace.gif') }}" alt="Fireplace">
-	<img src="{{ url_for('static', filename='images/rightBooks.png') }}" alt="Right Books" id="Right-Books">
-	</div>
-	
-	<div class="row">
-		<div class="column">
-		<h2> Recent Reviews: <br></h2>
-		
-		</div>
-		
-		<div class="column">
-		<h2> Recent Books: </h2>
-		
-		</div>
-	</div>
-	</body>
-	
-	<footer>
-	<div id="footer">
-	</div>
-	</footer>
+    <div id="body">
+        <img src="{{ url_for('static', filename='images/leftBooks.png') }}" alt="Left Books" id="Left-Books">
+        <img src="{{ url_for('static', filename='images/fireplace.gif') }}" alt="Fireplace">
+        <img src="{{ url_for('static', filename='images/rightBooks.png') }}" alt="Right Books" id="Right-Books">
+    </div>
+
+    <div class="row">
+        <div class="column" style="height: 100vh;">
+            <h2><u>Recent Reviews:</h2>
+            {% for review in recent_reviews %}
+    <div class="review" style="align-items: center; border: 2px solid brown; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+        <h4>{{ review['title'] }}</h3><br>
+        <p>Rating: {{ review['rating'] }} Stars</p>
+        <p>{{ review['review'] }}</p>
+    </div>
+{% else %}
+    <p>No recent reviews available.</p>
+{% endfor %}
+        </div>
+
+        <div class="column" style="height: 100vh;">
+    <h2><u>Recent Books:</h2>
+    {% for book in recent_books %}
+    <a href="{{ url_for('book', title=book['title']) }}" style="decoration:none"> <div class="book" style="display: flex; align-items: center; border: 2px solid brown; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+        <!-- Book cover -->
+        <img src="{{ url_for('static', filename=book['book_cover']) }}" alt="{{ book['title'] }}" style="width: 100px; height: 150px; margin-right: 15px;">
+		<!-- Book title -->
+        <h4 style="margin: 0;">{{ book['title'] }}</h4>
+    </div> </a>
+    {% else %}
+    <p>No recent books available.</p>
+    {% endfor %}
+</div>
+    </div>
+</body>
+
+<footer>
+    <div id="footer">
+        <!-- Footer content here -->
+    </div>
+</footer>
 </html>

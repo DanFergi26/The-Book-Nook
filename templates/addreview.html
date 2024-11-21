@@ -54,34 +54,23 @@
 </div>
 </head>
 <body>
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
     <div style="border: 2px solid brown; padding: 20px; border-radius: 5px; max-width: 300px; text-align: center;">
-    <h2>Add Book</h2>
-    <form name="add_book" action="{{ url_for('add_book') }}" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center;">
-        <label class="" for="bookcover" style="margin-bottom: 5px;">Book Cover:</label><br>
-        <input class="form1" type="file" name="bookcover" required><br>
-
-        <label class="" for="title" style="margin-bottom: 5px;">Title:</label><br>
-        <input class="form1" type="text" id="title" name="title" required><br>
-
-        <label class="" for="author" style="margin-bottom: 5px;">Author:</label><br>
-        <input class="form1" type="text" id="author" name="author" required><br>
-
-        <label class="" for="illustrator" style="margin-bottom: 5px;">Illustrator(if applicable):</label><br>
-        <input class="form1" type="text" id="illustrator" name="illustrator" ><br>
-
-        <label class="" for="genre" style="margin-bottom: 5px;">Genre:</label><br>
-        <input class="form1" type="text" id="genre" name="genre" required><br>
-
-        <label class="" for="release" style="margin-bottom: 5px;">Release:</label><br>
-        <input class="form1" type="date" id="release" name="release" required><br>
-
-        <label class="" for="descrip" style="margin-bottom: 5px;">Description:</label><br>
-        <input class="form1" type="text" id="descrip" name="descrip" required minlength="10" maxlength="1000000"><br>
-
-        <button class="form1" type="submit" class="btn" name="button" value="signup">
-            Add Book
-        </button>
+    <h1>Add a Review</h1>
+		<form method="POST" action="{{ url_for('add_review') }}">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required>
+        <br>
+        <label for="rating">Star Rating:</label><br>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+        <br>
+        <label for="review">Review:</label><br>
+        <textarea id="review" name="review" required></textarea>
+        <br>
+        <button type="submit">Submit Review</button>
+		{% if message %}
+        <p style="color: red;">{{ message }}</p>
+        {% endif %}
     </form>
 	</div>
 	</div>
