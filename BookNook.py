@@ -68,6 +68,7 @@ def signup_form():
         forename = request.form['forename']
         email = request.form['email']
         birth = request.form['birth']
+        bio = request.form['bio']
 
         # Load or create the main user DataFrame
         if os.path.exists(USER_FILE):
@@ -76,7 +77,7 @@ def signup_form():
                 df['ID'] = range(1, len(df) + 1)
             new_id = df['ID'].max() + 1
         else:
-            df = pd.DataFrame(columns=['ID', 'username', 'password', 'surname', 'forename', 'email', 'birth', 'profile_pic'])
+            df = pd.DataFrame(columns=['ID', 'username', 'password', 'surname', 'forename', 'email', 'birth', 'bio', 'profile_pic'])
             new_id = 1
 
         # Check if username already exists
@@ -93,6 +94,7 @@ def signup_form():
             'forename': forename,
             'email': email,
             'birth': birth,
+            'bio': bio,
             'profile_pic': profile_pic_path
         }])
         df = pd.concat([df, new_user], ignore_index=True)

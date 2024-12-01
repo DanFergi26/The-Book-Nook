@@ -23,10 +23,10 @@
     </h4><br>
 
     <!-- Code for page logo and title -->
-    <h1> 
+    <a href="/" style="text-decoration:none"><h1> 
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo"> 
         The Book Nook 
-    </h1>
+    </a></h1>
 
     <! -- Code for the pages navigation bar -->
 		<div>
@@ -83,6 +83,9 @@
 
             <label for="birth" style="margin-bottom: 5px;">Enter date of birth:</label>
             <input class="form1" type="date" id="birth" name="birth" required style="margin-bottom: 10px;">
+			
+			<label class="" for="bio" style="margin-bottom: 5px;">Bio:</label><br>
+			<input class="form1" type="text" id="bio" name="bio" required minlength="10" maxlength="1000000"><br>
 
             <button class="form1" type="submit" class="btn" name="button" value="signup" style="width: 100%; margin-top: 10px;">Create</button>
         </form>

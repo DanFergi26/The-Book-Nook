@@ -24,10 +24,10 @@
         <li><a href="" style="text-decoration:none">Wishlist</a></li>
     </h4><br>
 
-    <h1>
+    <a href="/" style="text-decoration:none"><h1>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo">
         The Book Nook
-    </h1>
+    </a></h1>
 
     <! -- Code for the pages navigation bar -->
 		<div>
@@ -56,21 +56,43 @@
 </head>
 
 <body>
-    <h1>{{ user_info['username'] }}'s Profile</h1>
-	<p><strong>Forename:</strong> {{ user_info['forename'] }}</p>
-    <p><strong>Surname:</strong> {{ user_info['surname'] }}</p>
-    <p><strong>Email:</strong> {{ user_info['email'] }}</p>
-    <p><strong>Birthdate:</strong> {{ user_info['birth'] }}</p>
-    <p><strong>Profile Picture:</strong></p>
-	<li><a href="{{ url_for('followers', username=user_info['username']) }}" style="text-decoration:none">Followers</a></li>
-    <li><a href="" style="text-decoration:none">|</a></li>
-    <li><a href="{{ url_for('following', username=user_info['username']) }}" style="text-decoration:none">Following</a></li>
-    <img src="{{ url_for('static', filename=user_info['profile_pic']) }}" alt="Profile Picture" style="width: 150px; height: 150px;">
-	
-	<form method="POST" action="{{ url_for('follow', username=user_info['username']) }}">
-    <button type="submit">Follow</button>
-</form>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <div style="display: flex; align-items: center; justify-content: center; padding: 20px; border: 2px solid brown; border-radius: 10px; max-width: 800px; margin: 0 auto;">
+
+        <!-- Left Section: Username, Forename, Surname, and Profile Picture -->
+        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 20px;">
+            <img src="{{ url_for('static', filename=user_info['profile_pic']) }}" 
+                 alt="Profile Picture" 
+                 style="width: 150px; height: 150px; margin-bottom: 10px;">
+            <h1 style="margin: 0;">{{ user_info['username'] }}</h1>
+            <p style="margin: 5px 0;"><strong>Forename:</strong> {{ user_info['forename'] }}</p>
+            <p style="margin: 5px 0;"><strong>Surname:</strong> {{ user_info['surname'] }}</p>
+        </div>
+
+        <!-- Center Section: Bio -->
+        <div style="flex-grow: 1; padding: 0 20px; text-align: center; border-left: 1px solid brown; border-right: 1px solid brown;">
+            <p><strong>Bio:</strong> {{ user_info['bio'] }}</p>
+        </div>
+
+        <!-- Right Section: Followers and Following -->
+        <div style="display: flex; flex-direction: column; align-items: center; margin-left: 20px;">
+            <li style="list-style: none; margin-bottom: 10px; background-color: brown;">
+                <a href="{{ url_for('followers', username=user_info['username']) }}" 
+                   style="text-decoration: none; font-weight: bold;">Followers</a>
+            </li>
+            <li style="list-style: none; background-color: brown;">
+                <a href="{{ url_for('following', username=user_info['username']) }}" 
+                   style="text-decoration: none; font-weight: bold;">Following</a>
+            </li>
+        </div>
+    </div>
+
+    <!-- Follow Button and Logout -->
+    <div style="margin-top: 20px; text-align: center;">
+        <form method="POST" action="{{ url_for('follow', username=user_info['username']) }}" style="display: inline;">
+            <button type="submit">Follow</button>
+        </form>
+        <a href="{{ url_for('logout') }}" style="margin-left: 10px;">Logout</a>
+    </div>
 </body>
 
 <footer>
