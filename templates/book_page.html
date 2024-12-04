@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Page title and .css file link -->
     <meta charset="UTF-8">
     <title>Books</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Top Navigation Links -->
+    <!-- Top Left Navigation Bar -->
     <h4 id="left">
         <li><a href="" style="text-decoration:none">Help</a></li>
         <li><a href="" style="text-decoration:none">|</a></li>
         <li><a href="" style="text-decoration:none">Events</a></li>
     </h4>
-
+	
+	<!-- Top Right Navigation Bar -->
     <h4 id="right">
         {% if session.get('logged_in') %}
 		<li><a href="{{ url_for('account', username=session['username']) }}" style="text-decoration:none">Account</a></li>
@@ -24,12 +26,13 @@
         <li><a href="" style="text-decoration:none">Wishlist</a></li>
     </h4><br>
 
+	<!-- Page logo and title -->
     <a href="/" style="text-decoration:none"><h1>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo">
         The Book Nook
     </a></h1>
 
-    <! -- Code for the pages navigation bar -->
+    <!-- Main Navigation Bar -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -55,10 +58,11 @@
 </div>
 </head>
 
+
 <body>
     <h1>Books</h1>
 
-    <!-- Display books -->
+    <!-- Display all Books within the site -->
     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
         {% for book in books %}
         <div style="border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center;">
@@ -68,9 +72,9 @@
         {% endfor %}
 		
     </div>
-
 </body>
 
+<!-- Footer -->
 <footer>
     <div id="footer"></div>
 </footer>

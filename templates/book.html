@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Page title and .css file link -->
     <meta charset="UTF-8">
     <title>{{ title_info['title'] }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Top Navigation Links -->
+    <!-- Top Left Navigation Bar -->
     <h4 id="left">
         <li><a href="" style="text-decoration:none">Help</a></li>
         <li><a href="" style="text-decoration:none">|</a></li>
         <li><a href="" style="text-decoration:none">Events</a></li>
     </h4>
 
+	<!-- Top Right Navigation Bar -->
     <h4 id="right">
         {% if session.get('logged_in') %}
 		<li><a href="{{ url_for('account', username=session['username']) }}" style="text-decoration:none">Account</a></li>
@@ -24,12 +26,13 @@
         <li><a href="" style="text-decoration:none">Wishlist</a></li>
     </h4><br>
 
+	<!-- Page logo and title -->
     <a href="/" style="text-decoration:none"><h1>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo">
         The Book Nook
     </a></h1>
 
-    <! -- Code for the pages navigation bar -->
+    <!-- Main Navigation Bar -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -55,6 +58,7 @@
 </div>
 </head>
 
+<!-- Code for displaying book info -->
 <body>
     <h1>{{ title_info['title'] }}</h1>
 	<p><strong>Author:</strong> {{ title_info['author'] }}</p>
@@ -65,6 +69,7 @@
 	<li><a href="{{ url_for('add_review') }}" style="text-decoration:none">Add Review</a></li>
 </body>
 
+<!-- Footer -->
 <footer>
     <div id="footer"></div>
 </footer>

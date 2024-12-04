@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ username }}'s Followers</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <!-- Top Navigation Links -->
     <h4 id="left">
@@ -68,7 +68,7 @@
                              style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
                         <a href="{{ url_for('account', username=follower['username']) }}" 
                            style="text-decoration: none; font-size: 18px;">
-                            {{ follower['forename'] }} {{ follower['surname'] }}
+                            {{ follower['username'] }}
                         </a>
                     </div>
                 </li>

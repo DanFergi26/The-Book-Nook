@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Page title and .css file link -->
     <meta charset="UTF-8">
     <title>Home</title>
-    <!-- Link to the CSS file using Flask's url_for function -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 		
-		<! -- Hyperlink to extra pages that'll be displayed top left page -->
+		<!-- Top Left Navigation Bar -->
 		<h4 id="left">
 		<li><a href="" style="text-decoration:none">Help</a></li>
 		<li><a href="" style="text-decoration:none">|</a></li>
 		<li><a href="" style="text-decoration:none">Events</a></li>
 		</h4>
 		
-		<! -- Hyperlink to extra pages that'll be displayed top left page -->
+		<!-- Top Right Navigation Bar -->
 		<h4 id="right">
 		<li><a href="{{ url_for('account', username=session['username']) if logged_in else url_for('login') }}" style="text-decoration:none">Account</a></li>
 		<li><a href="" style="text-decoration:none">|</a></li>
@@ -22,12 +22,12 @@
 		<li><a href="" style="text-decoration:none">Wishlist</a></li>
 		</h4><br>
 	
-		<! -- Code for page logo and title -->
+		<!-- Page logo and title -->
 		<a href="/" style="text-decoration:none"><h1>
 		<img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo"> The Book Nook 
 		</a></h1>
 		
-		<! -- Code for the pages navigation bar -->
+		<!-- Main Navigation Bar -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -53,6 +53,7 @@
 </div>
 	</head>
 	
+	<!-- Main body code, front page code -->
 	<body>
     <div id="body">
         <img src="{{ url_for('static', filename='images/leftBooks.png') }}" alt="Left Books" id="Left-Books">
@@ -60,11 +61,12 @@
         <img src="{{ url_for('static', filename='images/rightBooks.png') }}" alt="Right Books" id="Right-Books">
     </div>
 
+	<!-- Display the last 3 Recent Reviews -->
     <div class="row">
         <div class="column" style="height: 100vh;">
             <h2><u>Recent Reviews:</h2>
             {% for review in recent_reviews %}
-    <div class="review" style="align-items: center; border: 2px solid brown; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+    <div class="review" style="align-items: center; border: 2px solid brown; padding: 10px; border-radius: 5px;">
         <h4>{{ review['title'] }}</h3><br>
         <p>Rating: {{ review['rating'] }} Stars</p>
         <p>{{ review['review'] }}</p>
@@ -74,10 +76,11 @@
 {% endfor %}
         </div>
 
+	<!-- Display the last 3 Books added -->
         <div class="column" style="height: 100vh;">
     <h2><u>Recent Books:</h2>
     {% for book in recent_books %}
-    <a href="{{ url_for('book', title=book['title']) }}" style="decoration:none"> <div class="book" style="display: flex; align-items: center; border: 2px solid brown; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+    <a href="{{ url_for('book', title=book['title']) }}" style="decoration:none"> <div class="book" style="display: flex; align-items: center; border: 2px solid brown; padding: 10px; border-radius: 5px;">
         <!-- Book cover -->
         <img src="{{ url_for('static', filename=book['book_cover']) }}" alt="{{ book['title'] }}" style="width: 100px; height: 150px; margin-right: 15px;">
 		<!-- Book title -->
@@ -90,9 +93,10 @@
     </div>
 </body>
 
+<!-- Footer -->
 <footer>
     <div id="footer">
-        <!-- Footer content here -->
+        
     </div>
 </footer>
 </html>

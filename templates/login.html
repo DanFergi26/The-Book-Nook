@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Page title and .css file link -->
     <meta charset="UTF-8">
     <title>Login</title>
-    <!-- Link to the CSS file using Flask's url_for function -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Hyperlink to extra pages displayed on the top left -->
+    <!-- Top Left Navigation -->
     <h4 id="left">
         <li><a href="#" style="text-decoration:none">Help</a></li>
         <li><a href="#" style="text-decoration:none">|</a></li>
         <li><a href="#" style="text-decoration:none">Events</a></li>
     </h4>
 
-    <!-- Hyperlink to extra pages displayed on the top right -->
+    <!-- Top Right Navigation -->
     <h4 id="right">
         <li><a href="{{ url_for('account', username=session['username']) if logged_in else url_for('login') }}" style="text-decoration:none">Account</a></li>
         <li><a href="#" style="text-decoration:none">|</a></li>
@@ -22,13 +22,13 @@
         <li><a href="#" style="text-decoration:none">Wishlist</a></li>
     </h4><br>
 
-    <!-- Code for page logo and title -->
+    <!-- Page logo and title -->
     <a href="/" style="text-decoration:none"><h1> 
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo"> 
         The Book Nook 
     </a></h1>
 
-    <! -- Code for the pages navigation bar -->
+    <!-- Main Navigation Bar -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -54,9 +54,11 @@
 </div>
 </head>
 
+<!-- Main body -->
 <body>
 	<div style="margin-left: 600px; align-item: center; border: 2px solid brown; padding: 10px 20px; margin-bottom: 10px; border-radius: 5px; max-width: 300px;">
     
+	<!-- Login form -->
     <h2>Login</h2>
 <form name="login_form" 
       action="{{ url_for('login') }}" 
@@ -81,6 +83,7 @@
 </div>
 </body>
 
+<!-- Footer -->
 <footer>
     <div id="footer">
         <p>© 2024 The Book Nook. All rights reserved.</p>

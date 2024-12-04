@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Signup</title>
     <!-- Link to the CSS file using Flask's url_for function -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <!-- Hyperlink to extra pages displayed on the top left -->
     <h4 id="left">
@@ -84,8 +84,6 @@
             <label for="birth" style="margin-bottom: 5px;">Enter date of birth:</label>
             <input class="form1" type="date" id="birth" name="birth" required style="margin-bottom: 10px;">
 			
-			<label class="" for="bio" style="margin-bottom: 5px;">Bio:</label><br>
-			<input class="form1" type="text" id="bio" name="bio" required minlength="10" maxlength="1000000"><br>
 
             <button class="form1" type="submit" class="btn" name="button" value="signup" style="width: 100%; margin-top: 10px;">Create</button>
         </form>

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!-- Page Title and .css file -->
     <meta charset="UTF-8">
-    <title>Add Book</title>
+    <title>Upcoming Reads</title>
+    <!-- Link to the CSS file using Flask's url_for function -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Top Left Navigation -->
+    <!-- Hyperlink to extra pages displayed on the top left -->
     <h4 id="left">
         <li><a href="#" style="text-decoration:none">Help</a></li>
         <li><a href="#" style="text-decoration:none">|</a></li>
         <li><a href="#" style="text-decoration:none">Events</a></li>
     </h4>
 
-    <!-- Top Right NavigationS -->
+    <!-- Hyperlink to extra pages displayed on the top right -->
     <h4 id="right">
         <li><a href="{{ url_for('account', username=session['username']) if logged_in else url_for('login') }}" style="text-decoration:none">Account</a></li>
         <li><a href="#" style="text-decoration:none">|</a></li>
@@ -28,7 +28,7 @@
         The Book Nook 
     </a></h1>
 
-    <!-- Main Navigation Bar -->
+    <! -- Code for the pages navigation bar -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -53,45 +53,21 @@
     </h3>
 </div>
 </head>
-
-<!-- Main body code -->
 <body>
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <div style="border: 2px solid brown; padding: 20px; border-radius: 5px; max-width: 300px; text-align: center;">
-	
-	<!-- Code for the 'Add Book' form -->
-    <h2>Add Book</h2>
-    <form name="add_book" action="{{ url_for('add_book') }}" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center;">
-        <label class="" for="bookcover" style="margin-bottom: 5px;">Book Cover:</label><br>
-        <input class="form1" type="file" name="bookcover" required><br>
+    <h1>Add a Book to Your Upcoming Reads</h1>
 
-        <label class="" for="title" style="margin-bottom: 5px;">Title:</label><br>
-        <input class="form1" type="text" id="title" name="title" required><br>
+    
 
-        <label class="" for="author" style="margin-bottom: 5px;">Author:</label><br>
-        <input class="form1" type="text" id="author" name="author" required><br>
-
-        <label class="" for="illustrator" style="margin-bottom: 5px;">Illustrator(if applicable):</label><br>
-        <input class="form1" type="text" id="illustrator" name="illustrator" ><br>
-
-        <label class="" for="genre" style="margin-bottom: 5px;">Genre:</label><br>
-        <input class="form1" type="text" id="genre" name="genre" required><br>
-
-        <label class="" for="release" style="margin-bottom: 5px;">Release:</label><br>
-        <input class="form1" type="date" id="release" name="release" required><br>
-
-        <label class="" for="descrip" style="margin-bottom: 5px;">Description:</label><br>
-        <input class="form1" type="text" id="descrip" name="descrip" required minlength="10" maxlength="1000000"><br>
-
-        <button class="form1" type="submit" class="btn" name="button" value="signup">
-            Add Book
-        </button>
+    <form method="POST" action="{{ url_for('upcoming_reads') }}">
+        <label for="title">Book Title:</label>
+        <input type="text" id="title" name="title" required>
+        <button type="submit">Add</button>
     </form>
-	</div>
-	</div>
+	
+	{% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
 </body>
-
-<!-- Footer -->
 <footer>
     <div id="footer">
         <p>© 2024 The Book Nook. All rights reserved.</p>
