@@ -118,6 +118,7 @@ a {
 
 #footer {
 	background-color: brown;
+	color: white;
 	width: 100%;
 	height: 150px;
 }
@@ -156,4 +157,198 @@ list-style-type: none;
   padding-bottom: 50px;
   border-style: solid;
   border-color: brown;
+}
+
+
+/* Home Page */
+
+#homereviews { align-items: center; 
+border: 2px solid brown; 
+padding: 10px; 
+border-radius: 5px;
+}
+
+#homebooktitle { display: flex; 
+align-items: center; 
+border: 2px solid brown; 
+padding: 10px; 
+border-radius: 5px;
+}
+
+#homebookcover { width: 100px; 
+height: 150px; 
+margin-right: 15px;
+}
+
+
+/* Login Page */
+
+#login { margin-left: 600px; 
+align-items: center; 
+border: 2px solid brown; 
+padding: 10px 20px; 
+margin-bottom: 10px; 
+border-radius: 5px; 
+max-width: 300px;
+}
+
+
+/* Signup Page */
+
+#signupdiv { display: flex; 
+justify-content: center; 
+align-items: center; 
+height: 100vh;
+}
+
+#signupdiv2 { border: 2px solid brown; 
+padding: 20px; 
+border-radius: 5px; 
+max-width: 300px; 
+text-align: center;
+}
+
+#signupform { display: flex; 
+flex-direction: column; 
+align-items: center;
+}
+
+/* Search Page */
+
+#search { display: flex; 
+flex-wrap: wrap; 
+gap: 20px;
+}
+
+#searchbook { border: 1px solid #ccc; 
+padding: 10px; 
+width: 200px; 
+text-align: center;
+}
+
+#searchaccount { border: 1px solid #ccc; 
+padding: 10px; 
+width: 200px; 
+text-align: center;
+}
+
+#searchprofilepic { width: 100px;
+height: 100px; 
+border-radius: 50%;
+}
+
+/* Account Page */
+
+#acntdiv1 { display: flex; 
+padding: 20px; 
+border: 2px solid brown; 
+border-radius: 10px; 
+max-width: 1600px; 
+margin: 0 auto; 
+height: 80vh;
+}
+
+#userinfo { flex: 1; 
+display: flex; 
+flex-direction: column; 
+align-items: center; 
+margin-right: 20px; 
+margin-top: 20px; 
+text-align: center; 
+border-right: 2px solid brown; 
+padding-right: 20px;
+}
+
+#follow { display: flex; 
+flex-direction: column; 
+margin-top: 20px; 
+width: 100%; 
+text-align: center;
+}
+
+.follow { list-style: none; 
+background-color: brown; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+padding: 10px;
+}
+
+#upcomingreads { flex: 1; 
+display: flex; 
+flex-direction: column; 
+padding: 20px; 
+border-right: 2px solid brown; 
+text-align: center;
+}
+
+.upcomingreads { display: flex; 
+align-items: center; 
+margin-bottom: 10px; 
+border: 1px solid brown; 
+border-radius: 5px; 
+padding: 10px;
+}
+
+.up_reads { width: 50px; 
+height: 75px; 
+margin-right: 10px;
+}
+
+#accountreviews { flex: 1; 
+display: flex; 
+flex-direction: column; 
+padding: 20px; 
+text-align: center;
+}
+
+.accountreviews { margin-bottom: 15px; 
+padding: 15px; 
+border: 1px solid brown; 
+border-radius: 5px; 
+display: block;
+}
+
+
+/* Add Book */
+
+#addbookdiv1 { display: flex; 
+justify-content: center; 
+align-items: center; 
+height: 100vh;
+}
+
+#addbookdiv2 { border: 2px solid brown; 
+padding: 20px; 
+border-radius: 5px; 
+max-width: 300px; 
+text-align: center;
+}
+
+#addbook { display: flex; 
+flex-direction: column; 
+align-items: center;
+}
+
+
+/* Book Page */
+
+#bookcover { width: 150px; 
+height: 200px;
+}
+
+
+/* Add Review Page */
+
+#addreviewdiv { display: flex; 
+justify-content: center; 
+align-items: center; 
+height: 50vh;
+}
+
+#addreviewdiv2 { border: 2px solid brown; 
+padding: 20px; 
+border-radius: 5px; 
+max-width: 300px; 
+text-align: center;
 }

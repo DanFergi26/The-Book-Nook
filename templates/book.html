@@ -65,12 +65,13 @@
     <p><strong>Illustrator:</strong> {{ title_info['illustrator'] }}</p>
     <p><strong>Genre:</strong> {{ title_info['genre'] }}</p>
     <p><strong>Release:</strong> {{ title_info['release'] }}</p>
-    <img src="{{ url_for('static', filename=title_info['book_cover']) }}" alt="Book Cover" style="width: 150px; height: 200px;"><br>
+    <img src="{{ url_for('static', filename=title_info['book_cover']) }}" alt="Book Cover" style="" id="bookcover"><br>
 	<li><a href="{{ url_for('add_review') }}" style="text-decoration:none">Add Review</a></li>
 </body>
 
 <!-- Footer -->
 <footer>
-    <div id="footer"></div>
+    <div id="footer">
+	<p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>
 </footer>
 </html>

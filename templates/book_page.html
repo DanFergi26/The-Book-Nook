@@ -66,7 +66,7 @@
     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
         {% for book in books %}
         <div style="border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center;">
-            <a href="{{ url_for('book', title=book['title']) }}"> <img src="{{ url_for('static', filename=book['book_cover']) }}" alt="{{ book['title'] }}" style="width: 150px; height: 200px;"> </a>
+            <a href="{{ url_for('book', title=book['title']) }}"> <img src="{{ url_for('static', filename=book['book_cover']) }}" alt="{{ book['title'] }}" style="" id="bookcover"> </a>
             <h3>{{ book['title'] }}</h3>
         </div>
         {% endfor %}
@@ -76,6 +76,7 @@
 
 <!-- Footer -->
 <footer>
-    <div id="footer"></div>
+    <div id="footer">
+	<p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>
 </footer>
 </html>

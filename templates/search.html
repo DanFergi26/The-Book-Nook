@@ -60,10 +60,10 @@
     <!-- Books Section -->
     <h2>Books</h2>
     {% if books %}
-    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    <div style="" id="search">
         {% for book in books %}
-        <div style="border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center;">
-            <a href="{{ url_for('book', title=book['title']) }}"> <img src="{{ url_for('static', filename=book['book_cover']) }}" alt="{{ book['title'] }}" style="width: 150px; height: 200px;"> </a>
+        <div style="" id="searchbook">
+            <a href="{{ url_for('book', title=book['title']) }}"> <img src="{{ url_for('static', filename=book['book_cover']) }}" alt="{{ book['title'] }}" style="" id="bookcover"> </a>
             <h3>{{ book['title'] }}</h3>
             <p><strong>Author:</strong> {{ book['author'] }}</p>
             <p><strong>Genre:</strong> {{ book['genre'] }}</p>
@@ -77,10 +77,10 @@
     <!-- Accounts Section -->
     <h2>Accounts</h2>
     {% if accounts %}
-    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    <div style="" id="search">
         {% for account in accounts %}
-        <div style="border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center;">
-            <a href="{{ url_for('account', username=account['username']) }}"> <img src="{{ url_for('static', filename=account['profile_pic']) }}" alt="{{ account['username'] }}" style="width: 100px; height: 100px; border-radius: 50%;"> </a>
+        <div style="" id="searchaccount">
+            <a href="{{ url_for('account', username=account['username']) }}"> <img src="{{ url_for('static', filename=account['profile_pic']) }}" alt="{{ account['username'] }}" style="" id="searchprofilepic"> </a>
             <h3>{{ account['username'] }}</h3>
             <p><strong>Name:</strong> {{ account['forename'] }} {{ account['surname'] }}</p>
         </div>
@@ -91,6 +91,7 @@
     {% endif %}
 </body>
 <footer>
-    <div id="footer"></div>
+    <div id="footer">
+	<p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>
 </footer>
 </html>

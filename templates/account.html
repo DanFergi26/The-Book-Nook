@@ -61,10 +61,10 @@
 
 
 <body>
-    <div style="display: flex; padding: 20px; border: 2px solid brown; border-radius: 10px; max-width: 1600px; margin: 0 auto; height: 80vh;">
+    <div style="" id="acntdiv1">
 
         <!-- Left Section: User info -->
-        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; margin-right: 20px; margin-top: 20px; text-align: center; border-right: 2px solid brown; padding-right: 20px;">
+        <div style="" id="userinfo">
             <img src="{{ url_for('static', filename=user_info['profile_pic']) }}" alt="Profile Picture" style="width: 150px; height: 150px; margin-bottom: 10px;">
             <h1 style="margin: 0;">{{ user_info['username'] }}</h1>
             <p style="margin: 5px 0;"><strong>Forename:</strong> {{ user_info['forename'] }}</p>
@@ -76,11 +76,11 @@
             </form>
 
             <!-- Followers and Following Links -->
-            <div style="display: flex; flex-direction: column; margin-top: 20px; width: 100%; text-align: center;">
-                <li style="list-style: none; margin-bottom: 10px; background-color: brown; display: flex; justify-content: center; align-items: center; padding: 10px;">
+            <div style="" id="follow">
+                <li style="" class="follow">
                     <a href="{{ url_for('followers', username=user_info['username']) }}" style="text-decoration: none; color: white; font-weight: bold;">Followers</a>
                 </li>
-                <li style="list-style: none; background-color: brown; display: flex; justify-content: center; align-items: center; padding: 10px;">
+                <li style="" class="follow">
                     <a href="{{ url_for('following', username=user_info['username']) }}" style="text-decoration: none; color: white; font-weight: bold;">Following</a>
                 </li>
             </div>
@@ -88,17 +88,17 @@
         </div>
 
         <!-- Center Section: Upcoming Reads -->
-        <div style="flex: 1; display: flex; flex-direction: column; padding: 20px; border-right: 2px solid brown; text-align: center;">
+        <div style="" id="upcomingreads">
             <!-- Titles aligned horizontally -->
             <h3 style="margin: 0;"><a href="{{ url_for('upcoming_reads') }}">Upcoming Reads</a></h3>
 
             <!-- Upcoming Reads -->
-            <div class="upcoming-reads" style="flex-grow: 1; padding-bottom: 20px;">
+            <div style="flex-grow: 1; padding-bottom: 20px;">
                 <ul style="list-style-type: none; padding: 0;">
                     {% for book in upcoming_reads %}
                     <a href="{{ url_for('book', title=book['title']) }}">
-                        <li style="display: flex; align-items: center; margin-bottom: 10px; border: 1px solid brown; border-radius: 5px; padding: 10px;">
-                            <img src="{{ url_for('static', filename=book['cover']) }}" alt="{{ book['title'] }}" style="width: 50px; height: 75px; margin-right: 10px;">
+                        <li style="" class="upcomingreads">
+                            <img src="{{ url_for('static', filename=book['cover']) }}" alt="{{ book['title'] }}" style="" class="up_reads">
                             <span>{{ book['title'] }}</span>
                         </li>
                     </a>
@@ -111,15 +111,15 @@
         </div>
 
         <!-- Right Section: Recent Reviews -->
-        <div style="flex: 1; display: flex; flex-direction: column; padding: 20px; text-align: center;">
+        <div style="" id="accountreviews">
             <!-- Recent Reviews -->
-            <div class="recent-reviews" style="flex-grow: 1;">
+            <div style="flex-grow: 1;">
 			
 			<!-- Recent Reviews -->
                 <h3 style="margin: 0;">Recent Reviews</h3>
                 <ul style="list-style-type: none; padding: 0; margin: 0;">
                     {% for review in recent_reviews %}
-                    <li style="margin-bottom: 15px; padding: 15px; border: 1px solid brown; border-radius: 5px; display: block;">
+                    <li style="" class="accountreviews">
                         <p><strong>{{ review['title'] }}</strong></p>
                         <p>{{ review['review'] }}</p>
                         <p><em>Rating: {{ review['rating'] }} / 5</em></p>
@@ -137,6 +137,7 @@
 
 <!-- Footer -->
 <footer>
-    <div id="footer"></div>
+    <div id="footer">
+	<p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>
 </footer>
 </html>

@@ -56,12 +56,12 @@
 
 <!-- Main body code -->
 <body>
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <div style="border: 2px solid brown; padding: 20px; border-radius: 5px; max-width: 300px; text-align: center;">
+<div style="" id="addbookdiv1">
+    <div style="" id="addbookdiv2">
 	
 	<!-- Code for the 'Add Book' form -->
     <h2>Add Book</h2>
-    <form name="add_book" action="{{ url_for('add_book') }}" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center;">
+    <form name="add_book" action="{{ url_for('add_book') }}" method="post" enctype="multipart/form-data" style="" id="addbook">
         <label class="" for="bookcover" style="margin-bottom: 5px;">Book Cover:</label><br>
         <input class="form1" type="file" name="bookcover" required><br>
 
@@ -94,7 +94,7 @@
 <!-- Footer -->
 <footer>
     <div id="footer">
-        <p>© 2024 The Book Nook. All rights reserved.</p>
+        <p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>
     </div>
 </footer>
 </html>
