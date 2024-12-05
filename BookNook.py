@@ -1,3 +1,4 @@
+#imports
 from flask import Flask, render_template, request, redirect, url_for, session
 import pandas as pd
 import os
@@ -5,23 +6,23 @@ import os
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secret key for sessions
 
+#Path to all the databases and image folders within the site
 USER_FILE = 'users.xlsx'
 BOOK_FILE = 'books.xlsx'
 REVIEW_FILE = 'review.xlsx'
 PROFILE_PIC_FOLDER = 'static/profile_pics'
 BOOK_COVER_FOLDER = 'static/book_covers'
 USER_DB_FOLDER = 'user_databases'
-os.makedirs(PROFILE_PIC_FOLDER, exist_ok=True)  # Create the folder if it doesn't exist
+
+#Create the folders if they don't already exist
+os.makedirs(PROFILE_PIC_FOLDER, exist_ok=True)  
 os.makedirs(BOOK_COVER_FOLDER, exist_ok=True)
 os.makedirs(USER_DB_FOLDER, exist_ok=True)
 
 @app.route('/')
 def home():
-    # Path to the reviews file
-    REVIEW_FILE = 'review.xlsx'
-    BOOK_FILE = 'books.xlsx'
-    
-    # Initialize recent_reviews as an empty list in case the file does not exist
+
+    # Initialize recent_reviews and recent_books as an empty list in case the file does not exist
     recent_reviews = []
     recent_books = []
 
@@ -36,6 +37,7 @@ def home():
         # Get the top 3 most recent reviews
         recent_reviews = review_df.head(3).to_dict(orient='records')  # Convert to a list of dictionaries
 
+    # Check if the book file exists
     if os.path.exists(BOOK_FILE):
         book_df = pd.read_excel(BOOK_FILE)
         
@@ -43,7 +45,6 @@ def home():
 
         # Check if the 'book_cover' column exists and handle missing or invalid data
         if 'book_cover' in book_df.columns:
-            # Replace NaN or invalid values with a default image (optional)
             book_df['book_cover'] = book_df['book_cover'].fillna('default_cover.jpg').astype(str)
 
             recent_books = book_df.head(3).to_dict(orient='records')
@@ -101,9 +102,9 @@ def signup_form():
         # Create the user's personal database
         user_data = pd.DataFrame([{
             'username': username,
-            'ID': new_id,  # Ensure the ID matches the one from users.xlsx
-            'followers': [],  # Followers list (empty initially)
-            'following': [],   # Following list (empty initially)
+            'ID': new_id, 
+            'followers': [],  
+            'following': [],   
             'upcoming_reads': []
         }])
 
@@ -121,22 +122,30 @@ def signup_form():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     message = None
+     
+    #Gather login data
     if request.method == 'POST':
         username = request.form['uname']
         password = request.form['pass']
 
+        #Check if the user file exists
         if os.path.exists(USER_FILE):
             df = pd.read_excel(USER_FILE)
             user = df[df['username'] == username]
-
+    
+            #Check if username or password match the user database
             if user.empty:
                 message = "Account doesn't exist"
             elif user['password'].values[0] != password:
                 message = "The password is incorrect"
+                
+            #Set session login status and redirect to account page
             else:
                 session['logged_in'] = True
                 session['username'] = username
                 return redirect(url_for('account', username=username))
+                
+        #Alt message for if no accounts exists      
         else:
             message = "No registered users found."
 
@@ -154,8 +163,9 @@ def account(username):
 
     if user.empty:
         return "User not found", 404
-
-    user_info = user.iloc[0].to_dict()  # Get user data as a dictionary
+        
+    # Get user data as a dictionary
+    user_info = user.iloc[0].to_dict()  
 
     # Load upcoming reads for the user
     user_file = os.path.join(USER_DB_FOLDER, f"{username}.xlsx")
@@ -165,6 +175,7 @@ def account(username):
         user_df = pd.read_excel(user_file)
 
         if 'upcomingreads' in user_df.columns:
+        
             # Get upcoming reads titles
             upcoming_titles = user_df['upcomingreads'].dropna().tolist()
 
@@ -174,6 +185,7 @@ def account(username):
 
                 # Ensure necessary columns exist in books.xlsx
                 if 'title' in books_df.columns and 'book_cover' in books_df.columns:
+                
                     # Match titles and retrieve book covers
                     books_df['title'] = books_df['title'].str.strip().str.lower()
                     upcoming_reads = [
@@ -192,10 +204,10 @@ def account(username):
     # Load user details
     df = pd.read_excel(USER_FILE)
     user = df[df['username'] == username]
-    user_info = user.iloc[0].to_dict()  # Convert to dictionary for rendering
+    user_info = user.iloc[0].to_dict() 
 
     # Load reviews
-    reviews_file = REVIEW_FILE  # Path to reviews file
+    reviews_file = REVIEW_FILE  
     recent_reviews = []
     if os.path.exists(reviews_file):
         reviews_df = pd.read_excel(reviews_file)
@@ -222,7 +234,7 @@ def upcoming_reads():
 
     if request.method == 'POST':
         # Get the book title from the form
-        title = request.form.get('title', '').strip()  # Ensure no leading/trailing whitespace
+        title = request.form.get('title', '').strip()  
         if not title:
             message = "Book title is required."
         else:
@@ -299,13 +311,16 @@ def follow(username):
     return redirect(url_for('account', username=username))
 
 def get_user_id(username):
+    #Check if the user database exists
     if os.path.exists(USER_FILE):
+        #Read from the database
         df = pd.read_excel(USER_FILE)
+        #Grab the user's ID using the username
         user = df[df['username'] == username]
         return int(user['ID'].values[0]) if not user.empty else None
     return None
 
-# Helper function to add the logged-in user to the followed user's followers sheet
+
 def add_to_followers(file_path, username):
     if os.path.exists(file_path):
         df = pd.read_excel(file_path)
@@ -316,7 +331,7 @@ def add_to_followers(file_path, username):
         # Avoid duplicates
         if username not in followers:
             followers.append(username)
-            df.at[0, 'followers'] = str(followers)  # Update the followers column with the new list
+            df.at[0, 'followers'] = str(followers)  
         
         # Save the updated DataFrame back to the file
         df.to_excel(file_path, index=False)
@@ -331,7 +346,7 @@ def add_to_following(file_path, username):
         # Avoid duplicates
         if username not in following:
             following.append(username)
-            df.at[0, 'following'] = str(following)  # Update the following column with the new list
+            df.at[0, 'following'] = str(following) 
         
         # Save the updated DataFrame back to the file
         df.to_excel(file_path, index=False)
@@ -416,7 +431,7 @@ def add_book():
             message = "Book already added"
             return render_template('addbook.html', message=message)
 
-        # Add new user to DataFrame
+        # Add new book to Database
         new_user = pd.DataFrame([{
             'ID': new_id,
             'title': title,
@@ -434,29 +449,33 @@ def add_book():
 
 @app.route('/book/<title>')
 def book(title):
-    # Load user data from file
+    #Check if the book database exists
     if not os.path.exists(BOOK_FILE):
-        return "User database not found", 404
+        return "Book database not found", 404
 
+    #Read data from the book database
     df = pd.read_excel(BOOK_FILE)
     title = df[df['title'] == title]
 
     if title.empty:
-        return "User not found", 404
-
-    title_info = title.iloc[0].to_dict()  # Get user data as a dictionary
+        return "Book not found", 404
+        
+    # Get book data as a dictionary
+    title_info = title.iloc[0].to_dict()  
     
 
     return render_template('book.html', title_info=title_info)
     
 @app.route('/books')
 def books():
+    #Check if book database exists
     if not os.path.exists(BOOK_FILE):
         return "Book database not found", 404
 
     # Load all books from the database
     df = pd.read_excel(BOOK_FILE)
-    books_list = df.to_dict('records')  # Convert each row to a dictionary
+    # Convert each row to a dictionary
+    books_list = df.to_dict('records')  
 
     return render_template('book_page.html', books=books_list)
     
@@ -525,7 +544,8 @@ def add_review():
     
 @app.route('/search')
 def search():
-    search_query = request.args.get('q', '').strip().lower()  # Get the search query
+    # Get the search query
+    search_query = request.args.get('q', '').strip().lower()  
 
     if not search_query:
         return render_template('search.html', books=[], accounts=[], search_query=search_query)
@@ -540,7 +560,7 @@ def search():
     ]
     books_list = books_df.to_dict('records')
 
-    # Optionally, search for accounts if needed (example structure)
+    # Search for accounts if needed 
     accounts_df = pd.read_excel(USER_FILE) if os.path.exists(USER_FILE) else pd.DataFrame()
     accounts_df = accounts_df[
         accounts_df['username'].str.contains(search_query, case=False, na=False) |
@@ -553,6 +573,7 @@ def search():
 
 @app.route('/logout')
 def logout():
+    #Clear the session and redirect to home page
     session.clear()
     return redirect(url_for('home'))
 

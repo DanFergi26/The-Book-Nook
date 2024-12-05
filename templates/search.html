@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Page title and .css file linl -->
     <meta charset="UTF-8">
     <title>Search</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Top Navigation Links -->
+    <!-- Top Left Navigation Links -->
     <h4 id="left">
         <li><a href="" style="text-decoration:none">Help</a></li>
         <li><a href="" style="text-decoration:none">|</a></li>
         <li><a href="" style="text-decoration:none">Events</a></li>
     </h4>
 
+
+	<!-- Top Right Navigation Links -->
     <h4 id="right">
         {% if session.get('logged_in') %}
 		<li><a href="{{ url_for('account', username=session['username']) }}" style="text-decoration:none">Account</a></li>
@@ -24,12 +27,14 @@
         <li><a href="" style="text-decoration:none">Wishlist</a></li>
     </h4><br>
 
+
+	<!-- Page title and logo -->
     <a href="/" style="text-decoration:none"><h1>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo">
         The Book Nook
     </a></h1>
 
-    <! -- Code for the pages navigation bar -->
+    <!-- Main Navigation Bar -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -55,9 +60,11 @@
 </div>
 </head>
 <body>
+	<!-- Link to search route -->
     <h1>Search Results for "{{ search_query }}"</h1>
 
     <!-- Books Section -->
+	<!-- Links to book route to receive books to meet the key words entered -->
     <h2>Books</h2>
     {% if books %}
     <div style="" id="search">
@@ -70,11 +77,13 @@
         </div>
         {% endfor %}
     </div>
+	<!-- Alt Message -->
     {% else %}
     <p>No books found matching "{{ search_query }}"</p>
     {% endif %}
 
     <!-- Accounts Section -->
+	<!-- Links to the account route to receive accounts that meet the key words entered -->
     <h2>Accounts</h2>
     {% if accounts %}
     <div style="" id="search">
@@ -86,10 +95,13 @@
         </div>
         {% endfor %}
     </div>
+	<!-- Alt Message -->
     {% else %}
     <p>No accounts found matching "{{ search_query }}"</p>
     {% endif %}
 </body>
+
+<!-- Footer -->
 <footer>
     <div id="footer">
 	<p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>

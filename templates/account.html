@@ -84,7 +84,7 @@
                     <a href="{{ url_for('following', username=user_info['username']) }}" style="text-decoration: none; color: white; font-weight: bold;">Following</a>
                 </li>
             </div>
-            <a href="{{ url_for('logout') }}" style="margin-top: auto; background-color:brown; color:white;">Logout</a>
+            <a href="{{ url_for('logout') }}" style="" id="logout">Logout</a>
         </div>
 
         <!-- Center Section: Upcoming Reads -->
@@ -126,6 +126,7 @@
                     </li>
                     {% endfor %}
                 </ul>
+				<!-- Error message -->
                 {% if not recent_reviews %}
                 <p>No recent reviews available.</p>
                 {% endif %}

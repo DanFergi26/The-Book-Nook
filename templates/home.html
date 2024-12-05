@@ -56,12 +56,14 @@
 	<!-- Main body code, front page code -->
 	<body>
     <div id="body">
+		<!-- Image links for home page design -->
         <img src="{{ url_for('static', filename='images/leftBooks.png') }}" alt="Left Books" id="Left-Books">
         <img src="{{ url_for('static', filename='images/fireplace.gif') }}" alt="Fireplace">
         <img src="{{ url_for('static', filename='images/rightBooks.png') }}" alt="Right Books" id="Right-Books">
     </div>
 
 	<!-- Display the last 3 Recent Reviews -->
+	<!-- Links to recent reviews to receive the last 3 inputs to the database -->
     <div class="row">
         <div class="column" style="height: 100vh;">
             <h2><u>Recent Reviews:</h2>
@@ -71,13 +73,15 @@
         <p>Rating: {{ review['rating'] }} Stars</p>
         <p>{{ review['review'] }}</p>
     </div>
+	<!-- Alt Message -->
 {% else %}
     <p>No recent reviews available.</p>
 {% endfor %}
         </div>
 
 	<!-- Display the last 3 Books added -->
-        <div class="column" style="height: 100vh;">
+	<!-- Links to the book route to receive the last 3 books in the database -->
+	<div class="column" style="height: 100vh;">
     <h2><u>Recent Books:</h2>
     {% for book in recent_books %}
     <a href="{{ url_for('book', title=book['title']) }}" style="decoration:none"> <div class="book" id="homebooktitle" style="">
@@ -86,6 +90,7 @@
 		<!-- Book title -->
         <h4 style="margin: 0;">{{ book['title'] }}</h4>
     </div> </a>
+	<!-- Alt Message -->
     {% else %}
     <p>No recent books available.</p>
     {% endfor %}

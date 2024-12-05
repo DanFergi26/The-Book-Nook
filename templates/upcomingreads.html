@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Page title and link to .css file -->
     <meta charset="UTF-8">
     <title>Upcoming Reads</title>
-    <!-- Link to the CSS file using Flask's url_for function -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Hyperlink to extra pages displayed on the top left -->
+    <!-- Top Left Navigation -->
     <h4 id="left">
         <li><a href="#" style="text-decoration:none">Help</a></li>
         <li><a href="#" style="text-decoration:none">|</a></li>
         <li><a href="#" style="text-decoration:none">Events</a></li>
     </h4>
 
-    <!-- Hyperlink to extra pages displayed on the top right -->
+    <!-- Top Right Navigation -->
     <h4 id="right">
         <li><a href="{{ url_for('account', username=session['username']) if logged_in else url_for('login') }}" style="text-decoration:none">Account</a></li>
         <li><a href="#" style="text-decoration:none">|</a></li>
@@ -28,7 +28,7 @@
         The Book Nook 
     </a></h1>
 
-    <! -- Code for the pages navigation bar -->
+    <!-- Navigation -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -53,21 +53,33 @@
     </h3>
 </div>
 </head>
+
+<!-- Body -->
 <body>
-    <h1>Add a Book to Your Upcoming Reads</h1>
+<div style="" id="updiv1">
+    <!-- Upcoming Reads Form -->
+    <h1 style="" id="uptitle">Add a Book to Your Upcoming Reads</h1>
 
-    
+  
+    <div style="" id="updiv2">
+        <div style="" id="updiv3">
+          
+            <form method="POST" action="{{ url_for('upcoming_reads') }}" style="" id="upform"> 
+                <label for="title" style="margin-bottom: 10px; font-weight: bold;">Book Title:</label>
+                <input type="text" id="uptext" name="title" required>
+                <button type="submit" style="" id="upbtn">Add</button>
+            </form>
 
-    <form method="POST" action="{{ url_for('upcoming_reads') }}">
-        <label for="title">Book Title:</label>
-        <input type="text" id="title" name="title" required>
-        <button type="submit">Add</button>
-    </form>
-	
-	{% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
+            <!-- Error Message -->
+            {% if message %}
+                <p style="margin-top: 20px; color: green;">{{ message }}</p>
+            {% endif %}
+        </div>
+    </div>
+	</div>
 </body>
+
+<!-- Footer -->
 <footer>
     <div id="footer">
         <p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>

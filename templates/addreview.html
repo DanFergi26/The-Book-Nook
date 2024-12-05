@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Page title and link to .css file -->
     <meta charset="UTF-8">
     <title>Add Book</title>
-    <!-- Link to the CSS file using Flask's url_for function -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Hyperlink to extra pages displayed on the top left -->
+    <!-- Top Left Navigation -->
     <h4 id="left">
         <li><a href="#" style="text-decoration:none">Help</a></li>
         <li><a href="#" style="text-decoration:none">|</a></li>
         <li><a href="#" style="text-decoration:none">Events</a></li>
     </h4>
 
-    <!-- Hyperlink to extra pages displayed on the top right -->
+    <!-- Top Right Navigation -->
     <h4 id="right">
         <li><a href="{{ url_for('account', username=session['username']) if logged_in else url_for('login') }}" style="text-decoration:none">Account</a></li>
         <li><a href="#" style="text-decoration:none">|</a></li>
@@ -28,7 +28,7 @@
         The Book Nook 
     </a></h1>
 
-    <! -- Code for the pages navigation bar -->
+    <!-- Main Navigation Bar -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -53,28 +53,34 @@
     </h3>
 </div>
 </head>
+
+<!--Body -->
 <body>
-<div style="" id="addreviewdiv">
-    <div style="" id="addreviewdiv2">
-    <h1>Add a Review</h1>
-		<form method="POST" action="{{ url_for('add_review') }}">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title" required>
-        <br>
-        <label for="rating">Star Rating:</label><br>
-        <input type="number" id="rating" name="rating" min="1" max="5" required>
-        <br>
-        <label for="review">Review:</label><br>
-        <textarea id="review" name="review" required></textarea>
-        <br>
-        <button type="submit">Submit Review</button>
-		{% if message %}
-        <p style="color: red;">{{ message }}</p>
-        {% endif %}
-    </form>
-	</div>
+	<!-- Add Review Form -->
+	<div style="" id="addreviewdiv">
+		<div style="" id="addreviewdiv2">
+		<h1>Add a Review</h1>
+			<form method="POST" action="{{ url_for('add_review') }}">
+			<label for="title">Title:</label><br>
+			<input type="text" id="title" name="title" required>
+			<br>
+			<label for="rating">Star Rating:</label><br>
+			<input type="number" id="rating" name="rating" min="1" max="5" required>
+			<br>
+			<label for="review">Review:</label><br>
+			<textarea id="review" name="review" required></textarea>
+			<br>
+			<button type="submit">Submit Review</button>
+			<!-- Error message -->
+			{% if message %}
+			<p style="color: red;">{{ message }}</p>
+			{% endif %}
+		</form>
+		</div>
 	</div>
 </body>
+
+<!-- Footer -->
 <footer>
     <div id="footer">
         <p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+
 html {
 	background-color: beige;
 }
@@ -5,10 +8,10 @@ h1 {
 	margin: 100;
 	padding-top: 0px;
 	padding-bottom: 10px;
-	background-color: beige;
+	background-color: b
+	eige;
 	text-align: center;
 	font-family: 'Pacifico';
-	src: url('/fonts/Pacifico.regular.ttf');
 	}
 
 h2 {
@@ -24,6 +27,10 @@ h3 {
   padding-bottom: 50px;
   border-style: solid;
   border-color: brown;
+}
+
+body {
+	font-family: 'Questrial';
 }
 
 #right {
@@ -128,13 +135,6 @@ a {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	
-}
-
-.form1text{
-	margin-left: 680px;
-	display:inline;
-	vertical-align: middle;
 	
 }
 
@@ -272,6 +272,14 @@ display: flex;
 justify-content: center; 
 align-items: center; 
 padding: 10px;
+margin-bottom: 10px;
+border-radius: 5px;
+}
+
+#logout { margin-top: auto; 
+background-color:brown; 
+color:white; 
+border-radius: 5px;
 }
 
 #upcomingreads { flex: 1; 
@@ -337,6 +345,27 @@ align-items: center;
 height: 200px;
 }
 
+#bookdiv1 {font-family: Arial, sans-serif; 
+margin: 20px;
+}
+
+#bookdiv2 {display: flex; 
+align-items: flex-start; 
+max-width: 800px; 
+margin: 0 auto; 
+border: 2px solid brown; 
+border-radius: 10px; 
+padding: 20px;
+}
+
+#addreviewbtn{text-decoration: none; 
+padding: 10px 15px; 
+background-color: brown; 
+color: white; 
+font-weight: bold; 
+border-radius: 5px;
+}
+
 
 /* Add Review Page */
 
@@ -351,4 +380,88 @@ padding: 20px;
 border-radius: 5px; 
 max-width: 300px; 
 text-align: center;
+}
+
+
+/* Followers/ing */
+
+#fdiv1 { font-family: Arial, sans-serif; 
+margin: 20px; 
+display: flex; 
+flex-direction: column; 
+align-items: center; 
+min-height: 100vh;
+}
+
+#fdiv2 {flex: 1; 
+width: 100%; 
+max-width: 200px; 
+padding: 20px; 
+border: 2px solid brown; 
+border-radius: 10px;
+}
+
+#fol { margin-bottom: 20px; 
+padding: 10px; 
+border: 1px solid brown; 
+border-radius: 5px; 
+text-align: center; 
+align-items: center; 
+max-width: 150px; 
+background-color: #f9f9f9;
+}
+
+#backto { text-decoration: none; 
+padding: 10px 20px; 
+background-color: brown; 
+color: white; 
+font-weight: bold; 
+border-radius: 5px;
+}
+
+
+/* Upcoming Reads */
+
+#updiv1 { font-family: Arial, sans-serif; 
+margin: 0; 
+padding: 0;
+}
+
+#uptitle { text-align: center; 
+font-size: 24px; 
+margin: 20px 0;
+}
+
+#updiv2 { display: flex; 
+justify-content: center; 
+align-items: center; 
+height: 40vh;
+}
+
+#updiv3 { border: 2px solid brown; 
+border-radius: 10px; 
+padding: 20px; 
+width: 300px; 
+text-align: center;
+}
+
+#upform { display: flex; 
+flex-direction: column; 
+align-items: center;
+}
+
+#uptext { width: 100%; 
+padding: 10px; 
+margin-bottom: 20px; 
+border: 1px solid #ccc; 
+border-radius: 5px;
+}
+
+#upbtn { padding: 10px 20px; 
+background-color: brown; 
+color: white; 
+border: none; 
+border-radius: 5px; 
+font-size: 16px; 
+font-weight: bold;
 }

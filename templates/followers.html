@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Page title and link to .css file -->
     <meta charset="UTF-8">
     <title>{{ username }}'s Followers</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Top Navigation Links -->
+    <!-- Top Left Navigation Links -->
     <h4 id="left">
         <li><a href="" style="text-decoration:none">Help</a></li>
         <li><a href="" style="text-decoration:none">|</a></li>
         <li><a href="" style="text-decoration:none">Events</a></li>
     </h4>
 
+	<!-- Top Right Navigation Links -->
     <h4 id="right">
         {% if session.get('logged_in') %}
 		<li><a href="{{ url_for('account', username=session['username']) }}" style="text-decoration:none">Account</a></li>
@@ -24,12 +26,14 @@
         <li><a href="" style="text-decoration:none">Wishlist</a></li>
     </h4><br>
 
+
+	<!-- Page title and logo -->
     <a href="/" style="text-decoration:none"><h1>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Site Logo" id="Logo">
         The Book Nook
     </a></h1>
 
-    <! -- Code for the pages navigation bar -->
+    <!-- Main Navigation Bar -->
 		<div>
     <h3>
         <li><a href="" style="text-decoration:none">|</a></li>
@@ -55,17 +59,22 @@
 </div>
 </head>
 
+<!-- Body -->
 <body>
-    <h1>{{ username }}'s Followers</h1>
+<div style="" id="fdiv1">
+	<!-- Grab accounts username -->
+    <h1 style="text-align: center; margin-bottom: 20px;">{{ username }}'s Followers</h1>
 
+	<!-- Grab and list account's followers details to display only their followers -->
+	<div style="" id="fdiv2">
     {% if followers_details %}
-        <ul style="list-style-type: none; padding: 0;">
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
             {% for follower in followers_details %}
-                <li style="margin-bottom: 20px;">
+                <li style="" id="fol">
                     <div style="display: flex; align-items: center;">
                         <img src="{{ url_for('static', filename=follower['profile_pic']) }}" 
                              alt="Profile Picture" 
-                             style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
+                             style="width: 50px; height: 50px; border-radius: 50%; display: block; margin: 0 auto 10px;">
                         <a href="{{ url_for('account', username=follower['username']) }}" 
                            style="text-decoration: none; font-size: 18px;">
                             {{ follower['username'] }}
@@ -74,12 +83,23 @@
                 </li>
             {% endfor %}
         </ul>
+	<!-- Alt Message -->
     {% else %}
-        <p>No followers yet.</p>
+        <p style="text-align: center; font-size: 16px; color: gray;">No followers yet.</p>
     {% endif %}
-
-    <a href="{{ url_for('account', username=username) }}">Back to Profile</a>
+	</div>
+	
+    <!-- Back to Profile Button -->
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="{{ url_for('account', username=username) }}" 
+           style="" id="backto">
+            Back to Profile
+        </a>
+    </div>
+	</div>
 </body>
+
+<!-- Footer -->
 <footer>
     <div id="footer">
         <p>© 2024 The Book Nook. All rights reserved. Created by Dan Ferguson</p>

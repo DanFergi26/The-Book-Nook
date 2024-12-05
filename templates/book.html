@@ -60,13 +60,37 @@
 
 <!-- Code for displaying book info -->
 <body>
-    <h1>{{ title_info['title'] }}</h1>
-	<p><strong>Author:</strong> {{ title_info['author'] }}</p>
-    <p><strong>Illustrator:</strong> {{ title_info['illustrator'] }}</p>
-    <p><strong>Genre:</strong> {{ title_info['genre'] }}</p>
-    <p><strong>Release:</strong> {{ title_info['release'] }}</p>
-    <img src="{{ url_for('static', filename=title_info['book_cover']) }}" alt="Book Cover" style="" id="bookcover"><br>
-	<li><a href="{{ url_for('add_review') }}" style="text-decoration:none">Add Review</a></li>
+	<div style="" id="bookdiv1">
+    <div style="" id="bookdiv2">
+
+        <!-- Book Cover -->
+        <div style="flex-shrink: 0; margin-right: 20px;">
+            <img src="{{ url_for('static', filename=title_info['book_cover']) }}" 
+                 alt="Book Cover" 
+                 style="width: 200px; height: auto; border: 1px solid brown; border-radius: 5px;" 
+                 id="bookcover">
+        </div>
+
+        <!-- Book Title and Info -->
+		<!-- Links to title_info book route to receive info about a book with a specific title  -->
+        <div style="flex: 1;">
+            <h1 style="margin: 0; font-size: 1.8em;">{{ title_info['title'] }}</h1>
+            <p style="margin: 10px 0;"><strong>Author:</strong> {{ title_info['author'] }}</p>
+            <p style="margin: 5px 0;"><strong>Illustrator:</strong> {{ title_info['illustrator'] }}</p>
+            <p style="margin: 5px 0;"><strong>Genre:</strong> {{ title_info['genre'] }}</p>
+            <p style="margin: 5px 0;"><strong>Release:</strong> {{ title_info['release'] }}</p>
+
+            <!-- Add Review Button -->
+            <div style="margin-top: 20px;">
+                <a href="{{ url_for('add_review') }}" 
+                   style="" id="addreviewbtn">
+                    Add Review
+                </a>
+            </div>
+        </div>
+
+    </div>
+	</div>
 </body>
 
 <!-- Footer -->
